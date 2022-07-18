@@ -2,10 +2,14 @@ import XCTest
 @testable import XcodeIssueReporting
 
 final class XcodeIssueReportingTests: XCTestCase {
+    func generateReports() -> [XcodeIssue] {
+        [
+            .error("Test")
+        ]
+    }
+    
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(XcodeIssueReporting().text, "Hello, World!")
+        let reports = generateReports()
+        XCTAssertEqual(XcodeIssue.reportMessage(for: reports[0]), "error:Test")
     }
 }
