@@ -31,8 +31,6 @@ You can also specify where the issue appears in code, like the code file, line a
 ```swift
 XcodeIssue.report(.warning(
     "This is another test"
-    absoluteFilePath: "/Users/dev/Developer/SampleProject/Sources/SampleProject/main.swift",
-    line: 3,
-    column: 5
+    at: .sourceCodeFile("/Users/JohnDoe/Developer/SampleProject/Sources/SampleProject/main.swift", line: 3, column: 5)
 ))
 ```

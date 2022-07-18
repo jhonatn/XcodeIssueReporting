@@ -4,7 +4,7 @@ import XCTest
 final class XcodeIssueReportingTests: XCTestCase {
     func generateReports() -> [XcodeIssue] {
         [
-            .error("Test")
+            .error("Test"),
         ]
     }
     

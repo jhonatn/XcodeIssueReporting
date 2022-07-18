@@ -11,24 +11,28 @@ extension XcodeIssue {
     static func reportMessage(for issue: XcodeIssue) -> String {
         // Xcode likes warnings and errors in the following format:
         // {full_path_to_file}:{line}:{column_start}: {error,warning}: {content}
-        var locationSections: [String] = []
-        if let filePath = issue.file?.trimmingCharacters(in: .whitespacesAndNewlines), !filePath.isEmpty {
-            locationSections.append(filePath)
+        var sections: [String] = []
+        if
+            let location = issue.location,
+            let filePath = issue.location?.file.trimmingCharacters(in: .whitespacesAndNewlines),
+            !filePath.isEmpty
+        {
+            sections.append(filePath)
             
-            if let line = issue.line {
-                locationSections.append(contentsOf: [
+            if let line = location.line {
+                sections.append(contentsOf: [
                     "\(line)",
-                    "\(issue.column ?? 1)"
+                    "\(location.column ?? 1)"
                 ])
             }
         }
         
-        locationSections.append(contentsOf: [
+        sections.append(contentsOf: [
             issue.type.rawValue,
             issue.message
         ])
         
-        return locationSections.joined(separator: ":")
+        return sections.joined(separator: ":")
     }
     
     @discardableResult
