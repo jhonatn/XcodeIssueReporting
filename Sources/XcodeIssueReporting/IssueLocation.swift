@@ -14,19 +14,17 @@ public struct XcodeIssueLocation {
     public let line: Int?
     /// The character offset in the file for this location. 1-indexed.
     public let column: Int?
-    
-    private init(file: String, line: Int?, column: Int?) {
-        self.file = file
-        self.line = line
-        self.column = column
-    }
-    
+}
+
+extension XcodeIssueLocation {
     public static func file(_ absoluteFilePath: String) -> Self {
         self.init(file: absoluteFilePath, line: nil, column: nil)
     }
+    
     public static func sourceCodeFile(_ absoluteFilePath: String, line: Int) -> Self {
         self.init(file: absoluteFilePath, line: line, column: nil)
     }
+    
     public static func sourceCodeFile(_ absoluteFilePath: String, line: Int, column: Int) -> Self {
         self.init(file: absoluteFilePath, line: line, column: column)
     }

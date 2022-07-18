@@ -13,6 +13,10 @@ public struct XcodeIssue {
 
 // MARK: Initializing
 extension XcodeIssue {
+    public static func issue(_ type: XcodeIssueType, _ message: String, at location: XcodeIssueLocation? = nil) -> XcodeIssue {
+        self.init(type: type, message: message, location: location)
+    }
+    
     public static func warning(_ message: String, at location: XcodeIssueLocation? = nil) -> XcodeIssue {
         self.init(type: .warning, message: message, location: location)
     }
