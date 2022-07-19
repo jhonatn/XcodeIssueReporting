@@ -5,13 +5,14 @@ import PackageDescription
 
 let package = Package(
     name: "XcodeIssueReporting",
+    platforms: [.macOS(.v10_11)],
     products: [
         .library(
             name: "XcodeIssueReporting",
             targets: ["XcodeIssueReporting"]),
         .library(
-            name: "XcodeIssueReporting+SourceKitten",
-            targets: ["XcodeIssueReporting"]),
+            name: "XcodeIssueReportingForSourceKitten",
+            targets: ["XcodeIssueReportingForSourceKitten"]),
     ],
     dependencies: [
         .package(url: "https://github.com/jpsim/SourceKitten.git", from: "0.32.0"),
@@ -21,7 +22,7 @@ let package = Package(
             name: "XcodeIssueReporting",
             dependencies: []),
         .target(
-            name: "XcodeIssueReporting+SourceKitten",
+            name: "XcodeIssueReportingForSourceKitten",
             dependencies: [
                 "XcodeIssueReporting",
                 .product(name: "SourceKittenFramework", package: "SourceKitten")

@@ -19,14 +19,18 @@ extension XcodeIssueLocation {
             return nil
         }
         
-        guard let lineAndCharacter = file.stringView.lineAndCharacter(forByteOffset: byteRange.lowerBound) else {
+        guard
+            let lineAndCharacter = file.stringView.lineAndCharacter(forByteOffset: byteRange.lowerBound),
+            let cappedLine = UInt(exactly: lineAndCharacter.line),
+            let cappedColumn = UInt(exactly: lineAndCharacter.character)
+        else {
             return Self.file(filePathToUse)
         }
         
         return Self.sourceCodeFile(
             filePathToUse,
-            line: lineAndCharacter.line,
-            column: lineAndCharacter.character
+            line: cappedLine,
+            column: cappedColumn
         )
     }
 }
