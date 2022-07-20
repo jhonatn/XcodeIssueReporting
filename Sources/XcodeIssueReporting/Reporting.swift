@@ -28,8 +28,8 @@ extension XcodeIssue {
         }
         
         sections.append(contentsOf: [
-            issue.type.rawValue,
-            issue.message
+            " \(issue.type.rawValue)",
+            " \(issue.message)"
         ])
         
         return sections.joined(separator: ":")
